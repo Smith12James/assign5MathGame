@@ -1,0 +1,57 @@
+﻿<Window x:Name="mainWin" x:Class="assign5MathGame.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:assign5MathGame"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="857" MinHeight="500" MinWidth="857" ResizeMode="NoResize" MaxWidth="857" MaxHeight="500" WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <ControlTemplate x:Key="NoMouseOverButtonTemplate"   
+                 TargetType="Button">
+            <Border Background="{TemplateBinding Background}"  
+          BorderBrush="{TemplateBinding BorderBrush}"  
+          BorderThickness="{TemplateBinding BorderThickness}">
+                <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Border>
+
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled"  
+             Value="False">
+                    <Setter Property="Background"  
+              Value="{x:Static SystemColors.ControlLightBrush}" />
+                    <Setter Property="Foreground"  
+              Value="{x:Static SystemColors.GrayTextBrush}" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+
+    <Grid x:Name="mainGrid">
+        <Image x:Name="imgMainStarWarsLogo" Source="/starWarsLogo.png" MinWidth="857" MinHeight="483" Height="483" MaxHeight="483" MaxWidth="857" />
+
+        <Canvas>
+            <Label x:Name="lblMainWarning" Content="" Canvas.Left="410" Canvas.Top="318" Foreground="Red" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
+            <TextBox x:Name="txtbxUsrName" Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="415" Width="188" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FF505050" Foreground="#FFE2E426"/>
+        </Canvas>
+        <Label x:Name="lblUsrName" Content="Enter your name:" HorizontalAlignment="Left" Margin="222,386,0,0" VerticalAlignment="Top" FontWeight="Bold" Foreground="#FFE2E426" FontSize="14">
+            <Label.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5"/>
+            </Label.Background>
+        </Label>
+        <Label x:Name="lblUsrAge" Content="Enter your age (3 - 10):" HorizontalAlignment="Left" Margin="471,386,0,0" VerticalAlignment="Top" Foreground="#FFE2E426" FontWeight="Bold" FontSize="14">
+            <Label.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5"/>
+            </Label.Background>
+        </Label>
+        <TextBox HorizontalAlignment="Left" Margin="444,415,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="188" Background="#FF505050" Foreground="#FFE2E426"/>
+        <Button x:Name="btnStartGame" Template="{StaticResource NoMouseOverButtonTemplate}" Margin="648,409,79,0" HorizontalContentAlignment="Left" BorderBrush="Black" Height="29" VerticalAlignment="Top" Click="btnStartGame_Click">
+            <Button.Background>
+                <SolidColorBrush Color="Black" Opacity="0.5"/>
+            </Button.Background>
+            <Image x:Name="imgYellowArrowButton" Source="/beginGameYellowArrow.png" Height="25" Width="117" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Button>
+    </Grid>
+</Window>
