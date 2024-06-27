@@ -24,7 +24,11 @@ namespace assign5MathGame
 
         private void btnStartGame_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (txtbxUsrName.Text == "")
+            {
+                lblMainWarning.Content = "Please enter your name";
+
+            }
 
         }
     }
