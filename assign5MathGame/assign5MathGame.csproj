@@ -10,12 +10,24 @@
 
   <ItemGroup>
     <None Remove="beginGameYellowArrow.png" />
+    <None Remove="R2D2.png" />
+    <None Remove="starWarsBlastDoors.png" />
+    <None Remove="StarWarsDarthVader.png" />
+    <None Remove="StarWarsDroid.png" />
     <None Remove="starWarsLogo.png" />
+    <None Remove="StarWarsObiWan.png" />
+    <None Remove="StarWarsYoda.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="beginGameYellowArrow.png" />
+    <Resource Include="R2D2.png" />
+    <Resource Include="starWarsBlastDoors.png" />
+    <Resource Include="StarWarsDarthVader.png" />
+    <Resource Include="StarWarsDroid.png" />
     <Resource Include="starWarsLogo.png" />
+    <Resource Include="StarWarsObiWan.png" />
+    <Resource Include="StarWarsYoda.png" />
   </ItemGroup>
 
 </Project>
