@@ -31,8 +31,8 @@ namespace assign5MathGame
             }
             catch (Exception e)
             {
-                
-            
+                throw new ArgumentException(("issue with sound " + soundFilePath), e);
+
             }
 
         }
