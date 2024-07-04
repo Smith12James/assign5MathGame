@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System.Configuration;
+using System.Diagnostics;
+using System.Media;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -50,6 +52,11 @@ namespace assign5MathGame
         string gameType;
 
         /// <summary>
+        /// initialize playsounds so that theme plays on startup and stops when window closes or when begin game is clicked.
+        /// </summary>
+        playSounds playSounds = new playSounds();
+
+        /// <summary>
         /// Initialize current window and other windows needed later: GameWindow, 
         /// </summary>
         public MainWindow()
@@ -58,8 +65,8 @@ namespace assign5MathGame
 
             Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
 
-            gameWindow = new GameWindow();
-
+            
+            playSounds.imperialMarch(true);
 
         }
 
@@ -71,9 +78,13 @@ namespace assign5MathGame
         /// <param name="e"></param>
         private void btnStartGame_Click(object sender, RoutedEventArgs e)
         {
+            playSounds.imperialMarch(false);
+
             if (txtbxUsrName.Text == "")
             {
                 lblMainNameWarning.Content = "Please enter your name";
+
+                bUsrName = false;
 
             } 
             
@@ -82,15 +93,19 @@ namespace assign5MathGame
                 lblMainNameWarning.Content = "";
                 bUsrName = true;
 
+                sUsrName = txtbxUsrName.Text;
+
             }
 
             if (!(Int32.TryParse(txtbxUsrAge.Text, out iUsrAge)) || iUsrAge < 3 || iUsrAge > 10)
             {
                 lblMainAgeWarning.Content = "Please enter a number between 3 and 10";
 
+                bUsrAge = false;
+
             } 
             
-            else if (iUsrAge > 2 &&  iUsrAge < 11)
+            else if (Int32.TryParse(txtbxUsrAge.Text, out iUsrAge) && iUsrAge > 2 && iUsrAge < 11)
             {
                 lblMainAgeWarning.Content = "";
                 bUsrAge = true;
@@ -119,14 +134,18 @@ namespace assign5MathGame
 
                 }
 
+                gameWindow = new GameWindow();
+
                 gameWindow.setGameType(gameType);
-                
+                gameWindow.setName(sUsrName);
+                gameWindow.setAge(iUsrAge);
+
                 gameWindow.ShowDialog();
 
                 this.Show();
                 
             } 
-            
+
             else if (rdoAdd.IsChecked == false && rdoSub.IsChecked == false && rdoMultip.IsChecked == false && rdoDivis.IsChecked == false)
             {
                 lblWarnRdoWarning.Content = "Please select a game option";

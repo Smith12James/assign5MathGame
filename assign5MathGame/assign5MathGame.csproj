@@ -9,19 +9,74 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="acknowledged-2-101soundboards.wav" />
     <None Remove="beginGameYellowArrow.png" />
+    <None Remove="breathing-101soundboards.wav" />
+    <None Remove="darth-vader-theme-song-101soundboards.wav" />
+    <None Remove="good-job-101soundboards.wav" />
+    <None Remove="greenLightSaber.png" />
+    <None Remove="hello-there-obi.wav" />
+    <None Remove="i-have-a-bad-feeling-about-this-101soundboards.wav" />
+    <None Remove="problem-101soundboards.wav" />
     <None Remove="R2D2.png" />
+    <None Remove="redLightSaber.png" />
     <None Remove="starWarsBlastDoors.png" />
     <None Remove="StarWarsDarthVader.png" />
     <None Remove="StarWarsDroid.png" />
     <None Remove="starWarsLogo.png" />
     <None Remove="StarWarsObiWan.png" />
     <None Remove="StarWarsYoda.png" />
+    <None Remove="surrender-jedi-101soundboards.wav" />
+    <None Remove="the-negotiations-were-101soundboards.wav" />
+    <None Remove="traitor-101soundboards.wav" />
+    <None Remove="you-must-be-very-proud-101soundboards.wav" />
+    <None Remove="you-were-right-about-one-thing-master-101soundboards.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="acknowledged-2-101soundboards.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="breathing-101soundboards.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="darth-vader-theme-song-101soundboards.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="good-job-101soundboards.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="hello-there-obi.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="i-have-a-bad-feeling-about-this-101soundboards.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="problem-101soundboards.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="surrender-jedi-101soundboards.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="the-negotiations-were-101soundboards.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="traitor-101soundboards.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="you-must-be-very-proud-101soundboards.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="you-were-right-about-one-thing-master-101soundboards.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="beginGameYellowArrow.png" />
+    <Resource Include="greenLightSaber.png" />
     <Resource Include="R2D2.png" />
+    <Resource Include="redLightSaber.png" />
     <Resource Include="starWarsBlastDoors.png" />
     <Resource Include="StarWarsDarthVader.png" />
     <Resource Include="StarWarsDroid.png" />

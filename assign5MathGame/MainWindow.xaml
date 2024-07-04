@@ -36,6 +36,6 @@
         <RadioButton x:Name="rdoSub" Content="Subtraction" HorizontalAlignment="Left" Margin="331,442,0,0" VerticalAlignment="Top" Foreground="#FFE2E426"/>
         <RadioButton x:Name="rdoMultip" Content="Multiplication" HorizontalAlignment="Left" Margin="444,442,0,0" VerticalAlignment="Top" Foreground="#FFE2E426"/>
         <RadioButton x:Name="rdoDivis" Content="Division" HorizontalAlignment="Left" Margin="572,442,0,0" VerticalAlignment="Top" Foreground="#FFE2E426"/>
-        <Label x:Name="lblWarnRdoWarning" Content="" HorizontalAlignment="Left" Margin="668,452,0,0" VerticalAlignment="Top" Foreground="Red" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold"/>
+        <Label x:Name="lblWarnRdoWarning" Content="" HorizontalAlignment="Left" Margin="668,0,0,10" Foreground="Red" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontWeight="Bold" Height="26" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>

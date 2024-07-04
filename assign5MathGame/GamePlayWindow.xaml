@@ -11,12 +11,19 @@
         <Image x:Name="imgR2D2Player" Height="213" Margin="0,0,10,10" VerticalAlignment="Bottom" Source="/R2D2.png" OpacityMask="Black" HorizontalAlignment="Right" Width="144"/>
         <Button x:Name="btnGameRtrnMenu" Content="Exit" HorizontalAlignment="Center" Margin="0,0,0,10" Width="49" FontSize="16" FontWeight="Bold" Background="#FFEFC3C3" Click="btnGameRtrnMenu_Click" Height="27" VerticalAlignment="Bottom"/>
         <Image x:Name="imgNPC" HorizontalAlignment="Left" Height="358" Margin="-65,0,0,-20" VerticalAlignment="Bottom" Width="292" Source="/StarWarsObiWan.png"/>
-        <Button x:Name="btnGameWindowStart" Content="Start" HorizontalAlignment="Left" Margin="420,238,0,0" VerticalAlignment="Top" Background="#FFCBEFC3" Height="73" Width="122" FontWeight="Bold" FontSize="36" Click="btnGameWindowStart_Click" AutomationProperties.IsOffscreenBehavior="Onscreen" Visibility="Collapsed"/>
+        <Button x:Name="btnGameWindowStart" Content="Start" HorizontalAlignment="Left" Margin="420,238,0,0" VerticalAlignment="Top" Background="#FFCBEFC3" Height="73" Width="122" FontWeight="Bold" FontSize="36" Click="btnGameWindowStart_Click" AutomationProperties.IsOffscreenBehavior="Onscreen"/>
         <Label x:Name="lblShowMathLogic" Content="" HorizontalAlignment="Left" VerticalAlignment="Center" Height="119" Width="311" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" FontSize="72" FontWeight="Bold" Margin="263,0,0,0" MinWidth="319" MinHeight="119" MaxWidth="320" MaxHeight="120" Visibility="Hidden"/>
         <TextBox x:Name="txtbxAnswerInput" HorizontalAlignment="Left" Margin="582,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="114" Height="119" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold" FontSize="72" TextDecorations="Underline" MinWidth="114" MinHeight="119" MaxWidth="115" MaxHeight="120" Visibility="Hidden">
             <TextBox.Background>
                 <SolidColorBrush Color="White" Opacity="0.4"/>
             </TextBox.Background>
         </TextBox>
+        <Button x:Name="btnCheckAnswer" Content="Check?" HorizontalAlignment="Left" Margin="701,0,0,0" VerticalAlignment="Center" Height="119" Width="122" FontWeight="Bold" FontSize="36" MinWidth="122" MinHeight="119" MaxWidth="123" MaxHeight="120" Click="btnCheckAnswer_Click" Visibility="Hidden">
+            <Button.Background>
+                <SolidColorBrush Color="#FFDDDDDD" Opacity="0.9"/>
+            </Button.Background>
+        </Button>
+        <Image x:Name="imgSaberRed" HorizontalAlignment="Left" Height="113" Margin="246,233,0,0" VerticalAlignment="Top" Width="352" Source="/redLightSaber.png" Visibility="Hidden"/>
+        <Image x:Name="imgSaberGreen" HorizontalAlignment="Left" Height="105" Margin="246,236,0,0" VerticalAlignment="Top" Width="331" Source="/greenLightSaber.png" Visibility="Hidden"/>
     </Grid>
 </Window>
