@@ -8,7 +8,7 @@
         Title="MainWindow" Height="510" Width="857" MinHeight="510" MinWidth="857" ResizeMode="NoResize" MaxWidth="857" MaxHeight="510" WindowStartupLocation="CenterScreen" Background="Black">
 
     <Grid x:Name="mainGrid">
-        <Image x:Name="imgMainStarWarsLogo" Source="/starWarsLogo.png" MinWidth="857" MinHeight="483" Height="483" MaxHeight="483" MaxWidth="857" />
+        <Image x:Name="imgMainStarWarsLogo" Source="Images/starWarsLogo.png" MinWidth="857" MinHeight="483" Height="483" MaxHeight="483" MaxWidth="857" />
 
         <Canvas>
             <Label x:Name="lblMainNameWarning" Content="" Canvas.Left="224" Canvas.Top="361" Foreground="Red" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="Bold"/>
@@ -30,7 +30,7 @@
             <Button.Background>
                 <SolidColorBrush Color="Black" Opacity="0.5"/>
             </Button.Background>
-            <Image x:Name="imgYellowArrowButton" Source="/beginGameYellowArrow.png" Height="25" Width="117" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Image x:Name="imgYellowArrowButton" Source="Images/beginGameYellowArrow.png" Height="25" Width="117" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Button>
         <RadioButton x:Name="rdoAdd" Content="Addition" HorizontalAlignment="Left" Margin="219,442,0,0" VerticalAlignment="Top" Foreground="#FFE2E426"/>
         <RadioButton x:Name="rdoSub" Content="Subtraction" HorizontalAlignment="Left" Margin="331,442,0,0" VerticalAlignment="Top" Foreground="#FFE2E426"/>

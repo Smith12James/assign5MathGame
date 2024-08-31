@@ -61,12 +61,29 @@ namespace assign5MathGame
         /// </summary>
         public MainWindow()
         {
-            InitializeComponent();
 
-            Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
+            try
+            {
+                InitializeComponent();
 
+                playSounds.imperialMarch(true);
+
+            }
+            catch (Exception e)
+            {
+                MessageBoxButton msgbxBtns = MessageBoxButton.OK;
+
+                MessageBox.Show("An error occured: " + e.Message, "Error Occured", msgbxBtns);
+
+                this.Close();
+
+            }
+            finally
+            {
+                Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
+
+            }
             
-            playSounds.imperialMarch(true);
 
         }
 
@@ -78,78 +95,105 @@ namespace assign5MathGame
         /// <param name="e"></param>
         private void btnStartGame_Click(object sender, RoutedEventArgs e)
         {
-            playSounds.imperialMarch(false);
-
-            if (txtbxUsrName.Text == "")
+            try
             {
-                lblMainNameWarning.Content = "Please enter your name";
+                playSounds.imperialMarch(false);
 
-                bUsrName = false;
-
-            } 
-            
-            else if (txtbxUsrName.Text.Length > 1)
-            {
-                lblMainNameWarning.Content = "";
-                bUsrName = true;
-
-                sUsrName = txtbxUsrName.Text;
-
-            }
-
-            if (!(Int32.TryParse(txtbxUsrAge.Text, out iUsrAge)) || iUsrAge < 3 || iUsrAge > 10)
-            {
-                lblMainAgeWarning.Content = "Please enter a number between 3 and 10";
-
-                bUsrAge = false;
-
-            } 
-            
-            else if (Int32.TryParse(txtbxUsrAge.Text, out iUsrAge) && iUsrAge > 2 && iUsrAge < 11)
-            {
-                lblMainAgeWarning.Content = "";
-                bUsrAge = true;
-
-            }
-
-            if ((rdoAdd.IsChecked == true || rdoSub.IsChecked == true || rdoMultip.IsChecked == true || rdoDivis.IsChecked == true) && bUsrAge && bUsrName)
-            {
-                this.Hide();
-
-                if (rdoAdd.IsChecked == true)
+                if (txtbxUsrName.Text.Length < 2)
                 {
-                    gameType = "addition";
+                    lblMainNameWarning.Content = "Please enter your name";
+                    playSounds.wrongSelection();
+                    bUsrName = false;
+                    Thread.Sleep(1900);
+                    playSounds.imperialMarch(true);
 
-                } else if (rdoSub.IsChecked == true)
-                {
-                    gameType = "subtraction";
-
-                } else if (rdoMultip.IsChecked == true)
-                {
-                    gameType = "multiplication";
-
-                } else if (rdoDivis.IsChecked == true)
-                {
-                    gameType = "division";
+                    throw new Exception("Please enter your name");
 
                 }
 
-                gameWindow = new GameWindow();
+                else if (txtbxUsrName.Text.Length > 1)
+                {
+                    lblMainNameWarning.Content = "";
+                    bUsrName = true;
 
-                gameWindow.setGameType(gameType);
-                gameWindow.setName(sUsrName);
-                gameWindow.setAge(iUsrAge);
+                    sUsrName = txtbxUsrName.Text;
 
-                gameWindow.ShowDialog();
+                }
 
-                this.Show();
-                
-            } 
 
-            else if (rdoAdd.IsChecked == false && rdoSub.IsChecked == false && rdoMultip.IsChecked == false && rdoDivis.IsChecked == false)
+                if (!(Int32.TryParse(txtbxUsrAge.Text, out iUsrAge)) || iUsrAge < 3 || iUsrAge > 10)
+                {
+                    lblMainAgeWarning.Content = "Please enter a number between 3 and 10";
+                    playSounds.wrongSelection();
+                    bUsrAge = false;
+                    Thread.Sleep(1900);
+                    playSounds.imperialMarch(true);
+
+                    throw new Exception("Age must be between 3 and 10");
+
+                }
+                else if (Int32.TryParse(txtbxUsrAge.Text, out iUsrAge) && iUsrAge > 2 && iUsrAge < 11)
+                {
+                    lblMainAgeWarning.Content = "";
+                    bUsrAge = true;
+
+                }
+
+
+                if ((rdoAdd.IsChecked == true || rdoSub.IsChecked == true || rdoMultip.IsChecked == true || rdoDivis.IsChecked == true) && bUsrAge && bUsrName)
+                {
+                    this.Hide();
+
+                    if (rdoAdd.IsChecked == true)
+                    {
+                        gameType = "addition";
+
+                    }
+                    else if (rdoSub.IsChecked == true)
+                    {
+                        gameType = "subtraction";
+
+                    }
+                    else if (rdoMultip.IsChecked == true)
+                    {
+                        gameType = "multiplication";
+
+                    }
+                    else if (rdoDivis.IsChecked == true)
+                    {
+                        gameType = "division";
+
+                    }
+
+                    gameWindow = new GameWindow();
+
+                    gameWindow.setGameType(gameType);
+                    gameWindow.setName(sUsrName);
+                    gameWindow.setAge(iUsrAge);
+
+                    gameWindow.ShowDialog();
+
+                    this.Show();
+                    playSounds.imperialMarch(true);
+
+                }
+                else if (rdoAdd.IsChecked == false && rdoSub.IsChecked == false && rdoMultip.IsChecked == false && rdoDivis.IsChecked == false)
+                {
+                    lblWarnRdoWarning.Content = "Please select a game option";
+
+                    playSounds.wrongSelection();
+                    Thread.Sleep(1900);
+                    playSounds.imperialMarch(true);
+
+                    throw new Exception("No game type selected");
+
+                }
+
+            }
+            catch (Exception ex)
             {
-                lblWarnRdoWarning.Content = "Please select a game option";
-
+                Debug.WriteLine(ex.Message.ToString());
+            
             }
 
         }

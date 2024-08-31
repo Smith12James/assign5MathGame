@@ -19,7 +19,7 @@ namespace assign5MathGame
         /// </summary>
         public void imperialMarch(bool bPlaySound)
         {
-            string soundFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "darth-vader-theme-song-101soundboards.wav");
+            string soundFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sounds/darth-vader-theme-song-101soundboards.wav");
 
             try
             {
@@ -51,17 +51,17 @@ namespace assign5MathGame
             switch(i)
             {
                 case 1:
-                    sFileName = "acknowledged-2-101soundboards.wav";
+                    sFileName = "Sounds/acknowledged-2-101soundboards.wav";
 
                     break;
 
                 case 2:
-                    sFileName = "good-job-101soundboards.wav";
+                    sFileName = "Sounds/good-job-101soundboards.wav";
 
                     break;
 
                 default:
-                    sFileName = "you-must-be-very-proud-101soundboards.wav";
+                    sFileName = "Sounds/you-must-be-very-proud-101soundboards.wav";
 
                     break;
 
@@ -97,17 +97,17 @@ namespace assign5MathGame
             switch (i)
             {
                 case 1:
-                    sFileName = "surrender-jedi-101soundboards.wav";
+                    sFileName = "Sounds/surrender-jedi-101soundboards.wav";
 
                     break;
 
                 case 2:
-                    sFileName = "problem-101soundboards.wav";
+                    sFileName = "Sounds/problem-101soundboards.wav";
 
                     break;
 
                 default:
-                    sFileName = "i-have-a-bad-feeling-about-this-101soundboards.wav";
+                    sFileName = "Sounds/i-have-a-bad-feeling-about-this-101soundboards.wav";
 
                     break;
 
@@ -135,12 +135,33 @@ namespace assign5MathGame
         /// </summary>
         public void helloThere()
         {
-            string soundFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "hello-there-obi.wav");
+            string soundFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sounds/hello-there-obi.wav");
 
             try
             {
                 SoundPlayer spObiWanHello = new SoundPlayer(soundFilePath);
                 spObiWanHello.Play();
+
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentException(("issue with sound " + soundFilePath), e);
+
+            }
+
+        }
+
+        /// <summary>
+        /// used in the main menu/main window if user enters incorrect info/no game selection
+        /// </summary>
+        public void wrongSelection()
+        {
+            string soundFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Sounds/1-screaming-101soundboards.wav");
+
+            try
+            {
+                SoundPlayer spSelection = new SoundPlayer(soundFilePath);
+                spSelection.Play();
 
             }
             catch (Exception e)
@@ -165,12 +186,12 @@ namespace assign5MathGame
             switch (i)
             {
                 case 1:
-                    sFileName = "traitor-101soundboards.wav";
+                    sFileName = "Sounds/traitor-101soundboards.wav";
 
                     break;
 
                 default:
-                    sFileName = "breathing-101soundboards.wav";
+                    sFileName = "Sounds/breathing-101soundboards.wav";
 
                     break;
 
@@ -207,12 +228,12 @@ namespace assign5MathGame
             switch (i)
             {
                 case 1:
-                    sFileName = "the-negotiations-were-101soundboards.wav";
+                    sFileName = "Sounds/the-negotiations-were-101soundboards.wav";
 
                     break;
 
                 default:
-                    sFileName = "you-were-right-about-one-thing-master-101soundboards.wav";
+                    sFileName = "Sounds/you-were-right-about-one-thing-master-101soundboards.wav";
 
                     break;
 

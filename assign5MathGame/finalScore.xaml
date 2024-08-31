@@ -1,0 +1,27 @@
+﻿<Window x:Name="wndFinalScore" x:Class="assign5MathGame.finalScore"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:assign5MathGame"
+        mc:Ignorable="d"
+        Title="finalScore" Height="450" Width="800" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Window.Background>
+        <ImageBrush x:Name="imgFinalScoreScreen" ImageSource="/FinalScoreScreen.jpg"/>
+    </Window.Background>
+    <Grid>
+        <Button x:Name="btnExitGame" Content="Exit" HorizontalAlignment="Center" Margin="0,355,0,0" VerticalAlignment="Top" Width="79" Click="btnExitGame_Click" Background="Black" Foreground="#FFDCE459" FontWeight="Bold" FontSize="20"/>
+        <Image x:Name="imgDarthVader" HorizontalAlignment="Left" Margin="10,0,0,10" Width="302" Height="246" VerticalAlignment="Bottom" Source="/StarWarsDarthVader.png" Visibility="Hidden"/>
+        <TextBlock x:Name="txtblckScoreScreen" HorizontalAlignment="Left" Margin="161,66,0,0" VerticalAlignment="Top" Width="166" Height="273" FontWeight="Bold" FontSize="14">
+            <TextBlock.Background>
+                <SolidColorBrush Color="White" Opacity="0.65"/>
+            </TextBlock.Background>
+        </TextBlock>
+        <TextBlock x:Name="txtblckHighScore" Margin="0,66,85,0" VerticalAlignment="Top" Height="273" FontWeight="Bold" FontSize="14" HorizontalAlignment="Right" Width="242">
+            <TextBlock.Background>
+                <SolidColorBrush Color="White" Opacity="0.65"/>
+            </TextBlock.Background>
+        </TextBlock>
+
+    </Grid>
+</Window>

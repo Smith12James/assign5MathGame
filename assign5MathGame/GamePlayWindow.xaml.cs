@@ -13,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using System.Timers;
 
 namespace assign5MathGame
 {
@@ -62,10 +64,39 @@ namespace assign5MathGame
         /// </summary>
         playSounds sounds = new playSounds();
 
+        /// <summary>
+        /// initialize dispatcher timer. 
+        /// I believe this will use a separate thread that will also allow the UI to update with the timer.
+        /// </summary>
+        private DispatcherTimer dtTimer;
+
+        /// <summary>
+        /// initialize timer to be used in the setTimer() method
+        /// </summary>
+        //System.Timers.Timer tTimer;
+
+        /// <summary>
+        /// used to track time elapsed. This number is used as a value for the UI and 
+        /// </summary>
+        int iTimeKeeper = 0;
+
         public GameWindow()
         {
-            InitializeComponent();
+            try
+            {
+                InitializeComponent();
 
+            }
+            catch (Exception e)
+            {
+                MessageBoxButton msgbxBtns = MessageBoxButton.OK;
+
+                MessageBox.Show("An error occured: " +  e.Message, "Error Occured", msgbxBtns);
+
+                this.Close();
+            
+            }
+            
         }
 
         /// <summary>
@@ -75,14 +106,24 @@ namespace assign5MathGame
         /// <param name="gameType"></param>
         public void setGameType(string gameType)
         {
-            btnGameWindowStart.IsEnabled = true;
-            btnGameWindowStart.Visibility = Visibility.Visible;
+            try
+            {
+                btnGameWindowStart.IsEnabled = true;
+                btnGameWindowStart.Visibility = Visibility.Visible;
+                txtblckIntroMsg.Visibility = Visibility.Visible;
 
-            lblShowMathLogic.Visibility = Visibility.Hidden;
-            txtbxAnswerInput.Visibility = Visibility.Hidden;
-            btnCheckAnswer.Visibility = Visibility.Hidden;
+                lblShowMathLogic.Visibility = Visibility.Hidden;
+                txtbxAnswerInput.Visibility = Visibility.Hidden;
+                btnCheckAnswer.Visibility = Visibility.Hidden;
 
-            this.sGameType = gameType;
+                this.sGameType = gameType;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Issue establishing Game Type: " + ex.Message);
+
+            }
 
         }
 
@@ -90,16 +131,28 @@ namespace assign5MathGame
 
         private void btnGameWindowStart_Click(object sender, RoutedEventArgs e)
         {
-            sounds.helloThere();
+            try
+            {
+                sounds.helloThere();
 
-            btnGameWindowStart.IsEnabled = false;
-            btnGameWindowStart.Visibility = Visibility.Hidden;
+                btnGameWindowStart.IsEnabled = false;
+                btnGameWindowStart.Visibility = Visibility.Hidden;
+                txtblckIntroMsg.Visibility = Visibility.Hidden;
 
-            lblShowMathLogic.Visibility = Visibility.Visible;
-            txtbxAnswerInput.Visibility = Visibility.Visible;
-            btnCheckAnswer.Visibility = Visibility.Visible;
+                lblShowMathLogic.Visibility = Visibility.Visible;
+                txtbxAnswerInput.Visibility = Visibility.Visible;
+                btnCheckAnswer.Visibility = Visibility.Visible;
 
-            generateEquation();
+                setTimer();
+
+                generateEquation();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Issue starting game: " + ex.Message);
+
+            }
 
         }
 
@@ -110,7 +163,18 @@ namespace assign5MathGame
         /// <param name="e"></param>
         private void btnGameRtrnMenu_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            try
+            {
+                dtTimer.Stop();
+
+                this.Close();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Issue closing game with 'Exit' Button: " + ex.Message);
+
+            }
 
         }
 
@@ -120,37 +184,71 @@ namespace assign5MathGame
         /// </summary>
         private void generateEquation()
         {
-            txtbxAnswerInput.Clear();
-
-            switch (sGameType)
+            try
             {
-                case "addition":
-                    iMathNums = equation.add();
+                txtbxAnswerInput.Clear();
 
-                    lblShowMathLogic.Content = $"{iMathNums[0]} + {iMathNums[1]} = ";
+                switch (sGameType)
+                {
+                    case "addition":
+                        iMathNums = equation.add();
 
-                    break;
+                        lblShowMathLogic.Content = $"{iMathNums[0]} + {iMathNums[1]} = ";
 
-                case "subtraction":
-                    iMathNums = equation.sub();
+                        break;
 
-                    lblShowMathLogic.Content = $"{iMathNums[0]} - {iMathNums[1]} = ";
+                    case "subtraction":
+                        iMathNums = equation.sub();
 
-                    break;
+                        lblShowMathLogic.Content = $"{iMathNums[0]} - {iMathNums[1]} = ";
 
-                case "multiplication":
-                    iMathNums = equation.multi();
+                        break;
 
-                    lblShowMathLogic.Content = $"{iMathNums[0]} * {iMathNums[1]} = ";
+                    case "multiplication":
+                        iMathNums = equation.multi();
 
-                    break;
+                        lblShowMathLogic.Content = $"{iMathNums[0]} × {iMathNums[1]} = ";
 
-                case "division":
-                    iMathNums = equation.divis();
+                        break;
 
-                    lblShowMathLogic.Content = $"{iMathNums[0]} / {iMathNums[1]} = ";
+                    case "division":
+                        iMathNums = equation.divis();
 
-                    break;
+                        lblShowMathLogic.Content = $"{iMathNums[0]} ÷ {iMathNums[1]} = ";
+
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Issue generating equation: " + ex.Message);
+
+            }
+
+        }
+
+
+        private async void showInputError()
+        {
+            try
+            {
+                await this.Dispatcher.BeginInvoke(() =>
+                {
+                    lblInputError.Visibility = Visibility.Visible;
+
+                });
+                await Task.Delay(1000);
+
+                txtbxAnswerInput.Clear();
+                txtbxAnswerInput.Focus();
+                lblInputError.Visibility = Visibility.Hidden;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error with hiding input" + ex.Message);
+
             }
 
         }
@@ -161,31 +259,41 @@ namespace assign5MathGame
         /// </summary>
         private async void showSaberImg(bool bCorrect)
         {
-            if (bCorrect)
+            try
             {
-
-                await this.Dispatcher.BeginInvoke(() =>
+                if (bCorrect)
                 {
-                    Debug.WriteLine("Green");
 
-                    imgSaberGreen.Visibility = Visibility.Visible;
-                    imgSaberGreen.UpdateLayout();
+                    await this.Dispatcher.BeginInvoke(() =>
+                    {
+                        Debug.WriteLine("Green");
 
-                });
-                
+                        imgSaberGreen.Visibility = Visibility.Visible;
+                        imgSaberGreen.UpdateLayout();
 
-            } else
+                    });
+
+
+                }
+                else
+                {
+
+                    await this.Dispatcher.BeginInvoke(() =>
+                    {
+                        Debug.WriteLine("Red");
+
+                        imgSaberRed.Visibility = Visibility.Visible;
+                        imgSaberRed.UpdateLayout();
+
+                    });
+
+
+                }
+
+            }
+            catch (Exception ex)
             {
-
-                await this.Dispatcher.BeginInvoke(() =>
-                {
-                    Debug.WriteLine("Red");
-
-                    imgSaberRed.Visibility = Visibility.Visible;
-                    imgSaberRed.UpdateLayout();
-
-                });
-                
+                throw new Exception("Issue showing lightsaber image: " + ex.Message);
 
             }
 
@@ -196,15 +304,24 @@ namespace assign5MathGame
         /// </summary>
         private async void hideSaberImg()
         {
-            await this.Dispatcher.InvokeAsync(() =>
+            try
             {
-                imgSaberGreen.Visibility = Visibility.Hidden;
-                imgSaberGreen.UpdateLayout();
+                await this.Dispatcher.InvokeAsync(() =>
+                {
+                    imgSaberGreen.Visibility = Visibility.Hidden;
+                    imgSaberGreen.UpdateLayout();
 
-                imgSaberRed.Visibility = Visibility.Hidden;
-                imgSaberRed.UpdateLayout();
+                    imgSaberRed.Visibility = Visibility.Hidden;
+                    imgSaberRed.UpdateLayout();
 
-            });
+                });
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Issue hiding saber Image: " + ex.Message);
+
+            }
 
         }
 
@@ -217,86 +334,178 @@ namespace assign5MathGame
         /// <param name="e"></param>
         private async void btnCheckAnswer_Click(object sender, RoutedEventArgs e)
         {
-            int iUsrAnswerInput;
-            iTurnCount++;
-
-            Debug.WriteLine("Turn Count: " + iTurnCount);
-
-            if (int.TryParse(txtbxAnswerInput.Text, out iUsrAnswerInput))
+            try
             {
+                int iUsrAnswerInput;
 
-                Debug.WriteLine("User Answer: " + iUsrAnswerInput.ToString() + "\nCorrect Answer: " + iMathNums[2].ToString());
-
-                if (iUsrAnswerInput == (iMathNums[2]))
+                if (int.TryParse(txtbxAnswerInput.Text, out iUsrAnswerInput) && iUsrAnswerInput >= 0)
                 {
-                    iCorrectAnswers += 1;
+                    iTurnCount++;
 
-                    await this.Dispatcher.BeginInvoke(() =>
+                    Debug.WriteLine("Turn Count: " + iTurnCount);
+
+                    Debug.WriteLine("User Answer: " + iUsrAnswerInput.ToString() + "\nCorrect Answer: " + iMathNums[2].ToString());
+
+                    if (iUsrAnswerInput == (iMathNums[2]))
                     {
-                        lblShowMathLogic.Visibility = Visibility.Hidden;
-                        showSaberImg(true);
+                        iCorrectAnswers += 1;
 
-                    });
+                        await this.Dispatcher.BeginInvoke(() =>
+                        {
+                            lblShowMathLogic.Visibility = Visibility.Hidden;
+                            showSaberImg(true);
 
-                    sounds.correctSound();
+                        });
 
-                }
-                else
-                {
+                        sounds.correctSound();
 
-                    await this.Dispatcher.BeginInvoke(() =>
+                    }
+                    else
                     {
-                        lblShowMathLogic.Visibility = Visibility.Hidden;
-                        showSaberImg(false);
 
-                    });
+                        await this.Dispatcher.BeginInvoke(() =>
+                        {
+                            lblShowMathLogic.Visibility = Visibility.Hidden;
+                            showSaberImg(false);
 
-                    sounds.incorrectSound();
+                        });
 
-                }
+                        sounds.incorrectSound();
 
-                if (iTurnCount >= 10)
-                {
+                    }
 
+                    if (iTurnCount >= 10)
+                    {
+                        dtTimer.Stop();
 
-                    this.Close();
+                        finalScore finalScore = new finalScore();
 
-                }
-                else
-                {
+                        finalScore.setName(sUsrName);
+                        finalScore.setAge(iUsrAge);
+                        finalScore.setScore(iCorrectAnswers);
+                        finalScore.setTime(iTimeKeeper);
+                        finalScore.setScoreLabel();
 
+                        finalScore.ShowDialog();
+
+                        this.Close();
+
+                    }
                     
+                }
+                else
+                {
+                    showInputError();
+
+                    throw new Exception("Incorrect value entered. Numbers only 0 or greater");
 
                 }
-            } else
-            {
 
+                await Task.Delay(700);
+
+                generateEquation();
+
+                hideSaberImg();
+                lblShowMathLogic.Visibility = Visibility.Visible;
+                txtbxAnswerInput.Focus();
 
             }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Source: {ex.Source}\nError: {ex.Message}");
+                lblInputError.Visibility = Visibility.Hidden;
 
-            await Task.Delay(700);
-
-            generateEquation();
-
-            hideSaberImg();
-            lblShowMathLogic.Visibility = Visibility.Visible;
+            }
+            
 
         }
 
         /// <summary>
-        /// method is used to set players name
+        /// method is used to set players name, passed from the main window
         /// </summary>
         /// <param name="sName"></param>
         public void setName(string sName)
         {
-            sUsrName = sName;
+            try
+            {
+                sUsrName = sName;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Issue setting users name: " + ex.Message);
+
+            }
 
         }
 
-
+        /// <summary>
+        /// used to set players age, passed from the main window
+        /// </summary>
+        /// <param name="iAge"></param>
         public void setAge(int iAge)
         {
-            iUsrAge = iAge;
+            try
+            {
+                iUsrAge = iAge;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Issue setting users age: " + ex.Message);
+
+            }
+            
+        }
+
+        /// <summary>
+        /// used to set the timer, had some help from chatGPT to figure best timer to update UI
+        /// </summary>
+        /// <exception cref="Exception"></exception>
+        private void setTimer()
+        {
+            try
+            {
+                dtTimer = new DispatcherTimer();
+
+                dtTimer.Interval = TimeSpan.FromSeconds(1);
+                dtTimer.Tick += showTimer;
+
+                dtTimer.Start();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Issue with creating timer: " + ex.Message);
+
+            }
+            
+
+        }
+
+        /// <summary>
+        /// used to show timer in the UI, timer is located top right.
+        /// Method is called every second. had some help from chatGPT to figure best timer to update UI
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <exception cref="Exception"></exception>
+        private void showTimer(Object sender, EventArgs e)
+        {
+            try
+            {
+                Debug.WriteLine("Timer: " + e.ToString());
+
+                iTimeKeeper++;
+                lblShowTimer.Content = iTimeKeeper.ToString();
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Issue with showing timer: " + ex.Message);
+
+            }
+            
 
         }
 

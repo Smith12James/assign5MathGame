@@ -9,14 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="1-screaming-101soundboards.wav" />
     <None Remove="acknowledged-2-101soundboards.wav" />
     <None Remove="beginGameYellowArrow.png" />
     <None Remove="breathing-101soundboards.wav" />
     <None Remove="darth-vader-theme-song-101soundboards.wav" />
+    <None Remove="FinalScoreScreen.jpg" />
     <None Remove="good-job-101soundboards.wav" />
     <None Remove="greenLightSaber.png" />
     <None Remove="hello-there-obi.wav" />
     <None Remove="i-have-a-bad-feeling-about-this-101soundboards.wav" />
+    <None Remove="Images\FinalScoreScreen.jpg" />
     <None Remove="problem-101soundboards.wav" />
     <None Remove="R2D2.png" />
     <None Remove="redLightSaber.png" />
@@ -34,55 +37,65 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="acknowledged-2-101soundboards.wav">
+    <Content Include="Sounds\1-screaming-101soundboards.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="breathing-101soundboards.wav">
+    <Content Include="Sounds\acknowledged-2-101soundboards.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="darth-vader-theme-song-101soundboards.wav">
+    <Content Include="Sounds\breathing-101soundboards.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="good-job-101soundboards.wav">
+    <Content Include="Sounds\darth-vader-theme-song-101soundboards.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="hello-there-obi.wav">
+    <Content Include="Sounds\good-job-101soundboards.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="i-have-a-bad-feeling-about-this-101soundboards.wav">
+    <Content Include="Sounds\hello-there-obi.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="problem-101soundboards.wav">
+    <Content Include="Sounds\i-have-a-bad-feeling-about-this-101soundboards.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="surrender-jedi-101soundboards.wav">
+    <Content Include="Sounds\problem-101soundboards.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="the-negotiations-were-101soundboards.wav">
+    <Content Include="Sounds\surrender-jedi-101soundboards.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="traitor-101soundboards.wav">
+    <Content Include="Sounds\the-negotiations-were-101soundboards.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="you-must-be-very-proud-101soundboards.wav">
+    <Content Include="Sounds\traitor-101soundboards.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="you-were-right-about-one-thing-master-101soundboards.wav">
+    <Content Include="Sounds\you-must-be-very-proud-101soundboards.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sounds\you-were-right-about-one-thing-master-101soundboards.wav">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="beginGameYellowArrow.png" />
-    <Resource Include="greenLightSaber.png" />
-    <Resource Include="R2D2.png" />
-    <Resource Include="redLightSaber.png" />
-    <Resource Include="starWarsBlastDoors.png" />
+    <None Include="bin\Debug\net8.0-windows\highScores.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="FinalScoreScreen.jpg" />
+    <Resource Include="Images\beginGameYellowArrow.png" />
+    <Resource Include="Images\FinalScoreScreen.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\greenLightSaber.png" />
+    <Resource Include="Images\R2D2.png" />
+    <Resource Include="Images\redLightSaber.png" />
+    <Resource Include="Images\starWarsBlastDoors.png" />
+    <Resource Include="Images\StarWarsDarthVader.png" />
+    <Resource Include="Images\starWarsLogo.png" />
+    <Resource Include="Images\StarWarsObiWan.png" />
     <Resource Include="StarWarsDarthVader.png" />
-    <Resource Include="StarWarsDroid.png" />
-    <Resource Include="starWarsLogo.png" />
-    <Resource Include="StarWarsObiWan.png" />
-    <Resource Include="StarWarsYoda.png" />
   </ItemGroup>
 
 </Project>
